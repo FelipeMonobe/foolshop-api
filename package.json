@@ -1,7 +1,24 @@
 {
   "name": "foolshop-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "author": "FelipeMonobe <xinube@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node --harmony src/server.js",
+    "test": "ava src/**/*.spec.js"
+  },
+  "dependencies": {
+    "koa": "2",
+    "koa-convert": "^1.2.0",
+    "koa-helmet": "^3.1.0",
+    "koa-jwt": "^1.2.0",
+    "koa-mount": "next",
+    "koa-router": "next",
+    "node-glob": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "dotenv": "^4.0.0"
+  }
 }
