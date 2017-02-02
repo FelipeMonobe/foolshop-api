@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node --harmony src/server.js",
+    "debug": "node --harmony --debug-brk --inspect src/server.js",
     "test": "nyc ava --verbose src/**/*.spec.js"
   },
   "dependencies": {
