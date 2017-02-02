@@ -8,7 +8,7 @@ const main = async () => {
   const api = server.api
   const port = env.variables.api.PORT
   const host = env.variables.api.HOST
-  const showUpMessage = () => logger.success(`server @ http://${host}:${port}/api/`)
+  const showUpMessage = () => logger.success(`|SRV| http://${host}:${port}/api/`)
 
   env.check(env.variables)
 

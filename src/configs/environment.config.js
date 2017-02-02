@@ -14,7 +14,7 @@ const check = (node, parent) =>
       return check(node[property], property)
     }
 
-    return logger.warn(`${parent.toUpperCase()}_${property.toUpperCase()}=${node[property]}`)
+    return logger.warn(`|ENV| ${parent.toUpperCase()}_${property.toUpperCase()}=${node[property]}`)
   })
 
 module.exports = {

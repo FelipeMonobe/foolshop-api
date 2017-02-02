@@ -11,8 +11,8 @@ const bundleRoutes = async accessLevel => {
   const routes = await glob(routePath)
 
   routes.forEach(async route => {
-    logger.info(`registering ${route.substr(__dirname.length)}`)
     await require(route)(router)
+    logger.info(`|RTE| ${route.substr(__dirname.length)}`)
   })
 
   return router.routes()

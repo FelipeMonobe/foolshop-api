@@ -5,9 +5,9 @@ const pify = require('pify')
 
 const connectionStr = env.variables.database.connection
 
-const setup = cb => {
-  logger.info('connecting to MongoDB')
-  mongoose.connect(connectionStr, null, cb)
+const setup = () => {
+  mongoose.connect(connectionStr)
+  logger.info('|DTB| MongoDB')
 }
 
 module.exports = {

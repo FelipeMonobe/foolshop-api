@@ -15,8 +15,8 @@ const setup = async () => {
 
   return await models
     .forEach(file => {
-      logger.info(`requiring ${file.substr(__dirname.length)}`)
       require(file)
+      logger.info(`|MDL| ${file.substr(__dirname.length)}`)
     })
 }
 
