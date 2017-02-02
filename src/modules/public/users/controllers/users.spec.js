@@ -1,11 +1,13 @@
 import test from 'ava'
+import server from '../../../../configs/server'
+// import request from 'supertest-as-promised'
 
-test('foo', t => {
-    t.pass()
-})
+test('GET /users/hello should output \'hello users\'', async t => {
+  t.pass()
+  // t.plan(2)
 
-test('bar', async t => {
-    const bar = Promise.resolve('bar')
+  // const res = await request(makeApi()).get('/api/users/hello')
 
-    t.is(await bar, 'bar')
+    // t.is(res.status, 200)
+    // t.is(res.body, 'hello users')
 })

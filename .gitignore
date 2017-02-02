@@ -2,3 +2,5 @@ node_modules
 *.log
 .env
 yarn.lock
+.nyc_output
+coverage

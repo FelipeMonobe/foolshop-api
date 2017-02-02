@@ -1,4 +1,4 @@
-const controller = require('../controllers/admin.js')
+const controller = require('../controllers/admin.controller')
 
 module.exports = router => {
   router.get('/admin/hello', controller.hello)
