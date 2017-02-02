@@ -7,8 +7,8 @@ const fs = require('fs')
 
 const glob = pify(globCb)
 const readdir = pify(fs.readdir)
-const modelsPath = path.resolve('modules/**/*.model.js')
-const setup = async() => {
+const modelsPath = path.resolve('src/modules/**/*.model.js')
+const setup = async () => {
   const models = await glob(modelsPath)
 
   mongoose.Promise = global.Promise
