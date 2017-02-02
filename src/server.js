@@ -12,8 +12,8 @@ const main = async () => {
 
   env.check(env.variables)
 
+  database.setup()
   await mongoose.setup()
-  await database.setup()
   await server.setup()
 
   api.listen(port, showUpMessage)
