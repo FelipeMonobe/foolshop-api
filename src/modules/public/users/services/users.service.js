@@ -1,13 +1,15 @@
 const env = require('../../../../configs/environment.config')
-const convert = require('koa-convert')
+const jsonwebtoken = require('jsonwebtoken')
 const mongoose = require('mongoose')
-const koaJwt = require('koa-jwt')
+const pify = require('pify')
 
+const jwtSign = pify(jsonwebtoken.sign)
 const secret = env.variables.jwt.SECRET
+const expiresIn = 60
 const Users = mongoose.model('User')
-const jwt = convert(koaJwt({ secret }))
-const findByEmail = async email => Users.find({ email }).lean()
-const generateToken = user => jwt.sign(user, secret)
+const findByEmail = async email => Users.findOne({ email }).lean()
+const generateToken = async user => await jwtSign(user, secret, { expiresIn })
+
 const create = async form => {
   const user = new Users(form)
 
