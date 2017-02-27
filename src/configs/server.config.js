@@ -1,21 +1,23 @@
-const generateRoutes = require('./router.config')
-const bodyParser = require('koa-bodyparser')()
-const logger = require('../utils/logger.util')
-const env = require('./environment.config')
-const koaHelmet = require('koa-helmet')
-const convert = require('koa-convert')
-const mount = require('koa-mount')
-const koaJwt = require('koa-jwt')
-const Koa = require('koa')
-const api = new Koa()
+// @flow
 
-const setup = async () => {
+const generateRoutes: any = require('./router.config')
+const bodyParser: any = require('koa-bodyparser')()
+const logger: any = require('../utils/logger.util')
+const env: any = require('./environment.config')
+const koaHelmet: any = require('koa-helmet')
+const convert: any = require('koa-convert')
+const mount: any = require('koa-mount')
+const koaJwt: any = require('koa-jwt')
+const Koa: any = require('koa')
+const api: any = new Koa()
+
+const setup = async (): Promise<void> => {
   try {
-    const secret = env.variables.jwt.SECRET
-    const publicRoutes = convert(mount('/api', await generateRoutes('public')))
-    const privateRoutes = convert(mount('/api', await generateRoutes('private')))
-    const jwt = convert(koaJwt({ secret }))
-    const helmet = koaHelmet()
+    const secret: string = env.variables.jwt.SECRET
+    const publicRoutes: any = convert(mount('/api', await generateRoutes('public')))
+    const privateRoutes: any = convert(mount('/api', await generateRoutes('private')))
+    const jwt: any = convert(koaJwt({ secret }))
+    const helmet: any = koaHelmet()
 
     api.use(bodyParser)
     api.use(helmet)

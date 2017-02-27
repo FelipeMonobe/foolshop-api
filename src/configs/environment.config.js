@@ -1,10 +1,13 @@
-const logger = require('../utils/logger.util')
-const dotenv = require('dotenv')
+// @flow
+
+const logger: any = require('../utils/logger.util')
+const dotenv: any = require('dotenv')
 
 dotenv.config()
 
-const variables = require(`../env/${process.env.NODE_ENV}.env`)
-const check = (node, parent) =>
+const variables: any = require(`../env/${process.env.NODE_ENV}.env`)
+
+const check = (node: any, parent: any): void =>
   Object
   .keys(node)
   .forEach(property => {

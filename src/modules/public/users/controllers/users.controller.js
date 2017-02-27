@@ -1,8 +1,10 @@
-const UsersService = require('../services/users.service')
+// @flow
 
-const create = async (ctx) => {
-  const form = ctx.request.body
-  const user = await UsersService.create(form)
+const UsersService: any = require('../services/users.service')
+
+const create = async (ctx: any): Promise<void> => {
+  const form: any = ctx.request.body
+  const user: any = await UsersService.create(form)
 
   ctx.assert(user, 400, 'Invalid data')
   ctx.status = 200

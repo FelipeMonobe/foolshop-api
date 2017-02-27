@@ -1,7 +1,9 @@
-const controller = require('../controllers/signin.controller')
-const endpoint = '/users/signin'
+// @flow
 
-module.exports = router => {
+const controller: any = require('../controllers/signin.controller')
+const endpoint: string = '/users/signin'
+
+module.exports = (router: any): any => {
   router.post(endpoint, controller.authenticate)
 
   return router

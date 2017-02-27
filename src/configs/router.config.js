@@ -1,16 +1,19 @@
-const logger = require('../utils/logger.util')
-const Router = require('koa-router')
-const pify = require('pify')
-const globCb = require('glob')
-const path = require('path')
+// @flow
+
+const logger: any = require('../utils/logger.util')
+const Router: any = require('koa-router')
+const pify: any = require('pify')
+const globCb: any = require('glob')
+const path: any = require('path')
 
 const glob = pify(globCb)
-const bundleRoutes = async accessLevel => {
-  const router = new Router()
-  const routePath = path.resolve(`src/modules/${accessLevel}/**/routes/*.route.js`)
-  const routes = await glob(routePath)
 
-  routes.forEach(async route => {
+const bundleRoutes = async (accessLevel: string) : Promise<void> => {
+  const router: any = new Router()
+  const routePath: string = path.resolve(`src/modules/${accessLevel}/**/routes/*.route.js`)
+  const routes: string[] = await glob(routePath)
+
+  routes.forEach(async (route): Promise<void> => {
     await require(route)(router)
     logger.info(`|RTE| ${route.substr(__dirname.length)}`)
   })

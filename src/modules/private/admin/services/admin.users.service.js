@@ -1,15 +1,10 @@
-const mongoose = require('mongoose')
+// @flow
 
-const Users = mongoose.model('User')
+const mongoose: any = require('mongoose')
 
-const ban = async userId => {
-  const user = await Users.findById(userId)
+const Users: any = mongoose.model('User')
 
-  if (!user) return
-
-  user.active = false
-  return await user.save()
-}
+const ban = async (userId: number): Promise<void> => await Users.findByIdAndUpdate(userId, { active: false }, { new: true })
 
 module.exports = {
   ban,

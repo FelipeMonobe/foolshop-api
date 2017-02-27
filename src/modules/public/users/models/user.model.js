@@ -1,9 +1,11 @@
-const mongoose = require('mongoose')
+// @flow
 
-const Schema = mongoose.Schema
-const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const emailValidation = email => emailPattern.test(email)
-const UserSchema = new Schema({
+const mongoose: any = require('mongoose')
+
+const Schema: any = mongoose.Schema
+const emailPattern: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const emailValidation = (email: string): boolean => emailPattern.test(email)
+const UserSchema: any = new Schema({
   email: {
     type: String,
     unique: 'Email already exists',

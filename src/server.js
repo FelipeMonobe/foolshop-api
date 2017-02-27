@@ -1,14 +1,16 @@
-const database = require('./configs/database.config')
-const mongoose = require('./configs/mongoose.config')
-const env = require('./configs/environment.config')
-const server = require('./configs/server.config')
-const logger = require('./utils/logger.util')
+// @flow
 
-const main = async () => {
-  const api = server.api
-  const port = env.variables.api.PORT
-  const host = env.variables.api.HOST
-  const showUpMessage = () => logger.success(`|SRV| http://${host}:${port}/api/`)
+const database: any = require('./configs/database.config')
+const mongoose: any = require('./configs/mongoose.config')
+const env: any = require('./configs/environment.config')
+const server: any = require('./configs/server.config')
+const logger: any = require('./utils/logger.util')
+
+const main = async (): Promise<*> => {
+  const api: any = server.api
+  const port: number = env.variables.api.PORT
+  const host: string = env.variables.api.HOST
+  const showUpMessage = (): void => logger.success(`|SRV| http://${host}:${port}/api/`)
 
   env.check(env.variables)
 
