@@ -1,16 +1,21 @@
 // @flow
 
-const AdminUsersService: any = require('../services/admin.users.service')
+const AdminUsersService = require('../services/admin.users.service')
+const logger = require('../../../../utils/logger.util')
 
-const ban = async (ctx: any): Promise<void> => {
-  const userId: string = ctx.params.userId
-  const bannedUser: any = await AdminUsersService.ban(userId)
+const ban: Function = async (ctx: any): Promise<void> => {
+  try {
+    const userId: string = ctx.params.userId
+    const bannedUser: any = await AdminUsersService.ban(userId)
+    ctx.assert(bannedUser, 'User not found or already banned')
+    ctx.assert(!bannedUser.active, 'User already inactive')
 
-  ctx.assert(bannedUser, 500, 'User not found or already banned')
-  ctx.assert(!bannedUser.active, 500, 'Server failed to ban this user')
-
-  ctx.status = 200
-  ctx.body = bannedUser
+    ctx.body = bannedUser
+    ctx.status = 200
+  } catch (e) {
+    ctx.status = 500
+    return logger.error(e.stack)
+  }
 }
 
 module.exports = {

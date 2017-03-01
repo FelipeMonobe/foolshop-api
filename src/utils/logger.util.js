@@ -1,17 +1,17 @@
 // @flow
 
-const chalk: any = require('chalk')
+const chalk = require('chalk')
 
-const generateChalk: any =
-(color: string): any =>
+const generateChalk: Function =
+(color: string): Function =>
 (msg: string): void =>
 console.log(chalk.bold[color](`[${new Date().toISOString()}] ${msg}`))
 
-const error: any = generateChalk('red')
-const success: any = generateChalk('green')
-const info: any = generateChalk('blue')
-const warn: any = generateChalk('yellow')
-const log: any = generateChalk('white')
+const error: Function = generateChalk('red')
+const success: Function = generateChalk('green')
+const info: Function = generateChalk('blue')
+const warn: Function = generateChalk('yellow')
+const log: Function = generateChalk('white')
 
 module.exports = {
 	error,

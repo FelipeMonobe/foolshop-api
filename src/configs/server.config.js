@@ -1,17 +1,18 @@
 // @flow
 
-const generateRoutes: any = require('./router.config')
-const bodyParser: any = require('koa-bodyparser')()
-const logger: any = require('../utils/logger.util')
-const env: any = require('./environment.config')
-const koaHelmet: any = require('koa-helmet')
-const convert: any = require('koa-convert')
-const mount: any = require('koa-mount')
-const koaJwt: any = require('koa-jwt')
-const Koa: any = require('koa')
-const api: any = new Koa()
+const generateRoutes = require('./router.config')
+const bodyParser = require('koa-bodyparser')()
+const logger = require('../utils/logger.util')
+const env = require('./environment.config')
+const koaHelmet = require('koa-helmet')
+const convert = require('koa-convert')
+const mount = require('koa-mount')
+const koaJwt = require('koa-jwt')
+const Koa = require('koa')
 
-const setup = async (): Promise<void> => {
+const api: Koa = new Koa()
+
+const setup: Function = async (): Promise<Koa> => {
   try {
     const secret: string = env.variables.jwt.SECRET
     const publicRoutes: any = convert(mount('/api', await generateRoutes('public')))
@@ -24,8 +25,10 @@ const setup = async (): Promise<void> => {
     api.use(publicRoutes)
     api.use(jwt)
     api.use(privateRoutes)
+
+    return api
   } catch (e) {
-    return logger.error(e)
+    return logger.error(e.stack)
   }
 }
 

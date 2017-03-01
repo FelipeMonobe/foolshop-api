@@ -1,10 +1,14 @@
 // @flow
 
-const mongoose: any = require('mongoose')
+const mongoose = require('mongoose')
+const logger = require('../../../../utils/logger.util')
 
 const Users: any = mongoose.model('User')
 
-const ban = async (userId: number): Promise<void> => await Users.findByIdAndUpdate(userId, { active: false }, { new: true })
+const ban: Function = (userId: string): Promise<any> =>
+  Users
+  .findByIdAndUpdate(userId, { active: false }, { new: true })
+  .catch(e => logger.error(e.stack))
 
 module.exports = {
   ban,

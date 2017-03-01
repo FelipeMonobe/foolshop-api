@@ -1,7 +1,9 @@
-const controller: any = require('../controllers/admin.controller')
+// @flow
 
-module.exports = (router): any => {
-  router.delete('/admin/users/:userId/ban', controller.ban)
+const controller = require('../controllers/admin.controller')
+const endpoint: string = '/admin/users'
 
+module.exports = (router: any): any => {
+  router.delete(`${endpoint}/:userId/ban`, controller.ban)
   return router
 }
