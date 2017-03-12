@@ -13,16 +13,16 @@ const main: Function = async (): Promise<void> => {
     const host: string = env.variables.api.HOST
     const showUpMessage = (): void => logger.success(`|SRV| http://${host}:${port}/api/`)
 
-    env.check(env.variables)
+      env.check(env.variables)
 
-    database.setup()
-    await mongoose.setup()
-    await server.setup()
+      database.setup()
+      await mongoose.setup()
+      await server.setup()
 
-    return api.listen(port, showUpMessage)
-  } catch (e) {
-    return logger.error(e)
-  }
+      api.listen(port, showUpMessage)
+    } catch (e) {
+      logger.error(e)
+    }
 }
 
 main()

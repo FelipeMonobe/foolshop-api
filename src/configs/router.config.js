@@ -8,7 +8,7 @@ const path = require('path')
 
 const glob: Function = pify(globCb)
 
-const bundleRoutes: Function = async (accessLevel: string): Promise<void> => {
+const bundleRoutes: Function = async (accessLevel: string): Promise<any> => {
   try {
     const router: Router = new Router()
     const routePath: string = path.resolve(`build/modules/${accessLevel}/**/routes/*.route.js`)
@@ -21,7 +21,8 @@ const bundleRoutes: Function = async (accessLevel: string): Promise<void> => {
 
     return router.routes()
   } catch (e) {
-    return logger.error(e.stack)
+    logger.error(e.stack)
+    return
   }
 }
 

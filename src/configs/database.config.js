@@ -4,17 +4,22 @@ const logger = require('../utils/logger.util')
 const env = require('./environment.config')
 const mongoose = require('mongoose')
 const pify = require('pify')
+const {
+  apply,
+  partial,
+  path,
+  pipe,
+  prop,
+  tryCatch,
+} = require('ramda')
 
-const connectionStr: string = env.variables.database.CONN
+const connectionStr: string = path(['variables', 'database', 'CONN'], env)
 
-const setup: Function = (): void => {
-  try {
-    mongoose.connect(connectionStr)
-    return logger.info('|DTB| MongoDB')
-  } catch (e) {
-    return logger.error(e.stack)
-  }
-}
+const setup: Function = (): void =>
+  tryCatch(pipe(
+    partial(prop('connect', mongoose), connectionStr),
+    partial(prop('info', logger), '|DTB| MongoDB')
+  ), (prop('error', logger)))
 
 module.exports = {
   setup,
